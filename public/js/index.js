@@ -11,7 +11,7 @@ var activeNote = {};
 var getNotes = function() {
   return $.ajax({
     url: "/api/notes",
-    method: "GET",
+    method: "GET"
   });
 };
 
@@ -55,7 +55,7 @@ var handleNoteSave = function() {
     title: $noteTitle.val(),
     text: $noteText.val()
   };
-console.log(newNote)
+
   saveNote(newNote).then(function(data) {
     getAndRenderNotes();
     renderActiveNote();
