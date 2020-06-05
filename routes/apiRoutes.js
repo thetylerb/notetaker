@@ -2,14 +2,13 @@ const fs = require("fs");
 
 
 module.exports = function(app){
-  let notes = require("../db/db.json")
+  let notes = require("../note-taker/db/db.json")
 
   app.get("/api/notes", (req, res)=>{
     return res.json(notes)
   })
   
   app.get("/api/notes/:id", (req, res) => {
-    // console.log(req.params.id)
     const id = req.params.id;
     let found;
     notes.forEach(n => {
@@ -31,7 +30,7 @@ module.exports = function(app){
     }
     notes.push(newNote);
     let jsonNotes = JSON.stringify(notes)
-    fs.writeFile("./db/db.json", jsonNotes, function(err) {
+    fs.writeFile("../db/db.json", jsonNotes, function(err) {
       if (err) {
         return console.log(err);
       }
